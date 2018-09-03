@@ -1,0 +1,105 @@
+/****** HEADER CSS *******/
+.pageBgClass{
+	background : #F7F7F7!important;
+}
+
+.pageHeader{
+	background : #030924!important;
+	font-size: 1.5rem;
+	height: 2.5rem!important;
+}
+
+.pageSubHeader{
+	background : #F7F7F7!important;
+	border-bottom: none;
+}
+
+.pageTitle{
+	color: #77e2e7;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+.selectClass{
+	border-radius: 5px;	
+}
+.selectClass:focus{
+	outline : none!important;	
+}
+/****** HEADER CSS ENDS*******/
+
+/****** CHART CONTAINER*********************************************/
+.chartcontClass{
+	background: #f7f7f7;
+}
+.highlight{
+	background: #25caeb!important;
+}
+.chartTitle{
+	font-size : 1.125rem!important
+}
+/* .highlightText{
+	color : #000000!important;
+} */
+.chartTitleToolbar{
+	background : #030c30;
+}
+
+.chartTitleToolbar .sapMBarChild.sapMTitle{
+	color: #77e2e7;
+	text-shadow: none !important;
+}
+.chartTitleToolbar :not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
+    color: #77e2e7;
+    text-shadow: none !important;
+}
+
+/***** FOR ARR AND OR *********/
+.highlight .sapMBarChild.sapMTitle{
+	color: #000000;
+	text-shadow: none !important;
+}
+.highlight :not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
+    color: #000000;
+    text-shadow: none !important;
+}
+/***** FOR ARR AND OR ENDS*********/
+
+
+/*******CHART CONTAINER ENDS**************************************/
+
+.kpiTextClass{
+	font-style: italic;
+    color: #1697d2;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.uiTableClass .sapUiTableCol{
+	background: #030924!important;
+	/* color: white!important; */
+}
+
+/* .uiTableClass>div>div>div>div>div>table>tbody>tr:nth-child(even) {background: #b3d1ff}
+.uiTableClass>div>div>div>div>div>table>tbody>tr:nth-child(odd) {background: #ebebe0} */
+
+.uiTableClass tr:nth-child(even) {
+	background-color: #b3d1ff;
+}
+
+.uiTableClass .sapUiTableCol .sapMLabel{
+	color: white!important;
+}
+
+.uiTableClass .sapUiTableHdr .sapMLabel{
+	color: #5f8ef7!important;
+}
+
+/* .uiTableColHeader .sapUiTableTd{
+	background: #122142;
+	color: white;
+}
+
+.uiTableColHeader .sapUiTableTr{
+	background: #122142;
+} */

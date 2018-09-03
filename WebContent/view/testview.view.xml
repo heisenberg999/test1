@@ -1,0 +1,81 @@
+<mvc:View controllerName="ztrend.controller.testview" height="100%"
+	width="100%" busy="false" busyIndicatorDelay="1000" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core" xmlns:viz="sap.viz.ui5.controls" xmlns:suite="sap.suite.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:micro="sap.suite.ui.microchart"
+	xmlns:table="sap.ui.table" xmlns:semantic="sap.m.semantic">
+	<Page title="DATA" class="sapUiSizeCompact">
+		<content>
+			<Table id="idrisktable" items="{rm>/d/results}">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="Risks" level="H2" />
+						<ToolbarSpacer />
+						<Button tooltip="View Settings" icon="sap-icon://drop-down-list"
+							press="handleViewSettingsDialogButtonPressed" />
+						<ToggleButton icon="sap-icon://menu"
+							tooltip="Enable / Disable Custom Context Menu" press="onToggleContextMenu" />
+					</Toolbar>
+				</headerToolbar>
+				<infoToolbar>
+					<Toolbar id="vsdFilterBar" visible="false">
+						<Text id="vsdFilterLabel" />
+					</Toolbar>
+				</infoToolbar>
+				<columns>
+					<Column width="10rem">
+						<Text text="ZriskRefNo" />
+					</Column>
+					<Column width="10%">
+						<Text text="Timestamp" />
+					</Column>
+					<Column width="10%">
+						<Text text="TargetRiskClosureDate" />
+					</Column>
+					<Column width="10%">
+						<Text text="CreationDate" />
+					</Column>
+					<Column width="12rem">
+						<Text text="OrgName" />
+					</Column>
+					<Column width="12rem">
+						<Text text="PlatformGeo" />
+					</Column>
+					<Column width="12rem">
+						<Text text="RiskDomain" />
+					</Column>
+					<Column width="5%">
+						<Text text="InherentRiskRating" />
+					</Column>
+					<Column width="5rem">
+						<Text text="RiskStatus" />
+					</Column>
+					<Column width="5rem">
+						<Text text="RiskSeverity" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{rm>ZriskRefNo}" />
+							<Text text="{ path : 'rm>Timestamp', formatter : '.formatter.convertDate'}" />
+							<Text text="{ path : 'rm>TargetRiskClosureDate', formatter : '.formatter.convertDate'}" />
+							<Text text="{ path : 'rm>CreationDate', formatter : '.formatter.convertDate' }" />
+							
+							<!-- <Text text="{rm>Timestamp}" />
+							<Text text="{rm>TargetRiskClosureDate}" />
+							<Text text="{rm>CreationDate}" /> -->
+							
+							<Text text="{rm>OrgName}" />
+							<Text text="{rm>PlatformGeo}" />
+							<Text text="{rm>RiskDomain}" />
+							<Text text="{rm>InherentRiskRating}" />
+							<Text text="{rm>RiskStatus}" />
+							<Text text="{rm>RiskSeverity}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>

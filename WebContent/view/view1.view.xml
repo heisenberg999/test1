@@ -1,0 +1,284 @@
+<mvc:View controllerName="ztrend.controller.view1" height="100%"
+	width="100%" busy="false" busyIndicatorDelay="1000" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core" xmlns:viz="sap.viz.ui5.controls" xmlns:suite="sap.suite.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:micro="sap.suite.ui.microchart"
+	xmlns:table="sap.ui.table" xmlns:semantic="sap.m.semantic" xmlns:vbm="sap.ui.vbm"
+	xmlns:vk="sap.ui.vk" xmlns:cust="ztrend.custom">
+
+	<Page title="Risk Compliance Score Card" titleLevel="Auto" class="pageBgClass"
+		showNavButton="false" showHeader="false" showFooter="true"
+		navButtonPress="onNavBackToLaunchpad">
+		<customHeader>
+			<!-- <Bar enableFlexBox="false" class="pageHeader"> <contentLeft> <Image 
+				src="images/unilever.png" height="2rem" /> </contentLeft> <contentMiddle> 
+				<HBox justifyContent="Center" alignItems="Center" alignContent="Stretch" 
+				width="100%"> <Text text="ITSS RISK MANAGEMENT" class="pageTitle"/> </HBox> 
+				</contentMiddle> <contentRight></contentRight> </Bar> -->
+			<Toolbar class="pageHeader">
+				<Image src="images/unilever.png" height="3rem" />
+				<HBox justifyContent="Center" alignItems="Center" alignContent="Stretch"
+					width="100%">
+					<Text text="ITSS RISK MANAGEMENT" class="pageTitle" />
+				</HBox>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<Toolbar class="pageHeader">
+				<Image src="images/new/unilever.png" height="2rem" />
+				<HBox justifyContent="Center" alignItems="Center" alignContent="Stretch"
+					width="100%">
+					<Text text="ITSS RISK MANAGEMENT" class="pageTitle" />
+				</HBox>
+			</Toolbar>
+
+			<Toolbar class="sapUiSizeCompact pageSubHeader">
+				<ToolbarSpacer />
+				<HBox alignItems="Center">
+					<!-- Year Select -->
+					<Label text="Year" class="sapUiTinyMarginBegin" />
+					<Select id="idYear" visible="true" items="{myear>/}"
+						tooltip="Select Year" class="sapUiTinyMarginBegin selectClass"
+						change="onYearSelect">
+						<core:Item key="{myear>year}" text="{myear>year}" />
+					</Select>
+					<!-- Year Select Ends -->
+
+					<!-- UL Select -->
+					<RadioButton id="idRB1" selected="true" select="onRadioPress"
+						class="sapUiSmallMarginBegin">
+						<customData>
+							<core:CustomData key="level" value="UL" />
+						</customData>
+					</RadioButton>
+					<Text text="Unilever" />
+					<Select id="idUL" visible="false" items="{mh>/}" tooltip="Select UL"
+						class="sapUiTinyMarginBegin selectClass" change="onULSelect">
+						<core:Item key="{mh>Id}" text="{mh>Descrption}" />
+					</Select>
+					<!-- UL Select Ends -->
+
+					<!-- ORG and PL Select -->
+					<RadioButton id="idRB2" selected="false" select="onRadioPress"
+						class="sapUiSmallMarginBegin">
+						<customData>
+							<core:CustomData key="level" value="ORG" />
+						</customData>
+					</RadioButton>
+					<Text text="Organisation" />
+					<Select id="idOrg" visible="true" items="{mh>/0/children}"
+						width="15rem" enabled="false" tooltip="Select Organisation"
+						class="sapUiTinyMarginBegin selectClass" change="onOrganisationSelect">
+						<core:Item key="{mh>Id}" text="{mh>Descrption}" />
+					</Select>
+					<Text text="Platform" class="sapUiTinyMarginBegin" />
+					<Select id="idPlatform" visible="true" enabled="false"
+						width="15rem" items="{mh>/0/children/0/children}" tooltip="Select Platform"
+						class="sapUiTinyMarginBeginEnd selectClass" change="onPlatformSelect">
+						<core:Item key="{mh>Id}" text="{mh>Descrption}" />
+					</Select>
+					<!-- ORG and Select Ends -->
+				</HBox>
+				<ToolbarSpacer />
+			</Toolbar>
+
+			<!-- <l:BlockLayout id="BlockLayout" background="Dashboard"> <l:BlockLayoutRow> 
+				<l:BlockLayoutCell title="" width="1" class="kpiBlock"> <VBox alignItems="Center" 
+				justifyContent="SpaceBetween" fitContainer="true"> <Image src="images/avgriskrating.png" 
+				width="6rem" height="4rem" tooltip="Average Risk Rating" class="sapUiSmallMarginBeginEnd 
+				sapUiSmallMarginTop" press="onKPISelect"> <customData> <core:CustomData key="kpi" 
+				value="ARR" /> </customData> </Image> <Text text="Average Risk Rating" textAlign="Center" 
+				class="sapUiTinyMarginTop kpiTextClass"/> <Image src="images/addvsclose.png" 
+				width="6rem" height="4rem" tooltip="Added Vs Closed Risks" class="sapUiSmallMarginBeginEnd 
+				sapUiSmallMarginTop" press="onKPISelect"> <customData> <core:CustomData key="kpi" 
+				value="AVC" /> </customData> </Image> <Text text="Added vs Closed Risks" 
+				textAlign="Center" class="sapUiTinyMarginTop kpiTextClass"/> <Image src="images/risksbydomain.png" 
+				width="6rem" height="4rem" tooltip="Risks By Domain" class="sapUiSmallMarginBeginEnd 
+				sapUiSmallMarginTop" press="onKPISelect"> <customData> <core:CustomData key="kpi" 
+				value="RBD" /> </customData> </Image> <Text text="Risks By Domain" textAlign="Center" 
+				class="sapUiTinyMarginTop kpiTextClass"/> <Image src="images/overduerisk.png" 
+				width="6rem" height="4rem" tooltip="Overdue Risks" class="sapUiSmallMarginBeginEnd 
+				sapUiSmallMarginTop" press="onKPISelect"> <customData> <core:CustomData key="kpi" 
+				value="OR" /> </customData> </Image> <Text text="Overdue Risks" textAlign="Center" 
+				class="sapUiTinyMarginTop kpiTextClass"/> <Image src="images/risksbycriticality.png" 
+				width="6rem" tooltip="Risks By Criticality" height="4rem" class="sapUiSmallMarginBeginEnd 
+				sapUiSmallMarginTop" press="onKPISelect"> <customData> <core:CustomData key="kpi" 
+				value="RBC" /> </customData> </Image> <Text text="Risks by Criticality" textAlign="Center" 
+				class="sapUiTinyMarginTop kpiTextClass"/> </VBox> </l:BlockLayoutCell> <l:BlockLayoutCell 
+				id="idGraphBlock" title="Test" titleLevel="H5" width="5"> <viz:VizFrame id="idVizFrame" 
+				uiConfig="{applicationSet:'fiori'}" height='100%' width="100%" vizType='bar' 
+				/> </l:BlockLayoutCell> </l:BlockLayoutRow> </l:BlockLayout> -->
+
+			<l:Grid class="sapUiTinyMarginTop" hSpacing="0.5" defaultSpan="L4 M4 S10">
+				<l:content>
+					<suite:ChartContainer showFullScreen="true"
+						class="chartcontClass" showLegendButton="false" showZoom="false"
+						autoAdjustHeight="false" title="">
+						<suite:toolbar>
+							<OverflowToolbar class="highlight">
+								<Image src="images/new/arrv1.png" width="2rem" />
+								<Title text="Average Risk Rating" class="highlightText" />
+								<ToolbarSpacer />
+								<suite:ChartContainerToolbarPlaceholder>
+								</suite:ChartContainerToolbarPlaceholder>
+							</OverflowToolbar>
+						</suite:toolbar>
+						<suite:content>
+							<suite:ChartContainerContent icon="sap-icon://line-chart">
+								<suite:content>
+									<viz:Popover id="idPopOverARR"></viz:Popover>
+									<viz:VizFrame id="idVizFrameARR" height="17rem"
+										uiConfig="{applicationSet:'fiori'}" width="100%" selectData="dataSelect">
+										<viz:customData>
+											<core:CustomData key="kpikey" value="ARR" />
+										</viz:customData>
+									</viz:VizFrame>
+								</suite:content>
+							</suite:ChartContainerContent>
+						</suite:content>
+					</suite:ChartContainer>
+
+					<suite:ChartContainer showFullScreen="true"
+						class="chartcontClass" showLegendButton="true" showZoom="false"
+						autoAdjustHeight="false" title="">
+						<suite:toolbar>
+							<OverflowToolbar class="chartTitleToolbar">
+								<Image src="images/new/rbcv1.png" width="2rem" />
+								<Title text="Risks by Criticality" class="chartTitle" />
+								<ToolbarSpacer />
+
+								<suite:ChartContainerToolbarPlaceholder>
+								</suite:ChartContainerToolbarPlaceholder>
+							</OverflowToolbar>
+						</suite:toolbar>
+						<suite:content>
+							<suite:ChartContainerContent icon="sap-icon://line-chart">
+								<suite:content>
+									<viz:Popover id="idPopOverRBC"></viz:Popover>
+									<viz:VizFrame id="idVizFrameRBC" height="17rem"
+										uiConfig="{applicationSet:'fiori'}" width="100%" selectData="dataSelect">
+										<viz:customData>
+											<core:CustomData key="kpikey" value="RBC" />
+										</viz:customData>
+									</viz:VizFrame>
+								</suite:content>
+							</suite:ChartContainerContent>
+						</suite:content>
+					</suite:ChartContainer>
+
+					<suite:ChartContainer showFullScreen="true"
+						class="chartcontClass" showLegendButton="true" showZoom="false"
+						autoAdjustHeight="false" title="">
+						<suite:toolbar>
+							<OverflowToolbar class="chartTitleToolbar">
+								<Image src="images/new/rbdv1.png" width="2rem" />
+								<Title text="Risks by Domain" class="chartTitle" />
+								<ToolbarSpacer />
+
+								<suite:ChartContainerToolbarPlaceholder>
+								</suite:ChartContainerToolbarPlaceholder>
+							</OverflowToolbar>
+						</suite:toolbar>
+						<suite:content>
+							<suite:ChartContainerContent icon="sap-icon://line-chart">
+								<suite:content>
+									<viz:Popover id="idPopOverRBD"></viz:Popover>
+									<viz:VizFrame id="idVizFrameRBD" height="17rem"
+										uiConfig="{applicationSet:'fiori'}" width="100%" selectData="dataSelect">
+										<viz:customData>
+											<core:CustomData key="kpikey" value="RBD" />
+										</viz:customData>
+									</viz:VizFrame>
+								</suite:content>
+							</suite:ChartContainerContent>
+						</suite:content>
+					</suite:ChartContainer>
+
+					<suite:ChartContainer showFullScreen="true"
+						class="chartcontClass" showLegendButton="false" showZoom="false"
+						autoAdjustHeight="false" title="">
+						<suite:toolbar>
+							<OverflowToolbar class="highlight">
+								<Image src="images/new/orv1.png" width="2rem" />
+								<Title text="Overdue Risks" class="chartTitle highlightText" />
+								<ToolbarSpacer />
+
+								<suite:ChartContainerToolbarPlaceholder>
+								</suite:ChartContainerToolbarPlaceholder>
+							</OverflowToolbar>
+						</suite:toolbar>
+						<suite:content>
+							<suite:ChartContainerContent>
+								<suite:content>
+									<viz:Popover id="idPopOverOR"></viz:Popover>
+									<viz:VizFrame id="idVizFrameOR" height="17rem"
+										width="100%" selectData="dataSelect" uiConfig="{applicationSet:'fiori'}">
+										<viz:customData>
+											<core:CustomData key="kpikey" value="OR" />
+										</viz:customData>
+									</viz:VizFrame>
+								</suite:content>
+							</suite:ChartContainerContent>
+						</suite:content>
+					</suite:ChartContainer>
+
+					<suite:ChartContainer showFullScreen="true"
+						class="chartcontClass" showLegendButton="true" showZoom="false"
+						autoAdjustHeight="false" title="">
+						<suite:toolbar>
+							<OverflowToolbar class="chartTitleToolbar">
+								<Image src="images/new/avcv1.png" width="2rem" />
+								<Title text="Added vs Closed Risks" class="chartTitle" />
+								<ToolbarSpacer />
+
+								<suite:ChartContainerToolbarPlaceholder>
+								</suite:ChartContainerToolbarPlaceholder>
+							</OverflowToolbar>
+						</suite:toolbar>
+						<suite:content>
+							<suite:ChartContainerContent icon="sap-icon://line-chart">
+								<suite:content>
+									<viz:Popover id="idPopOverAVC"></viz:Popover>
+									<viz:VizFrame id="idVizFrameAVC" height="17rem"
+										uiConfig="{applicationSet:'fiori'}" width="100%" selectData="dataSelect">
+										<viz:customData>
+											<core:CustomData key="kpikey" value="AVC" />
+										</viz:customData>
+									</viz:VizFrame>
+								</suite:content>
+							</suite:ChartContainerContent>
+						</suite:content>
+					</suite:ChartContainer>
+
+					<suite:ChartContainer showFullScreen="true"
+						class="chartcontClass" showLegendButton="true" showZoom="false"
+						autoAdjustHeight="false" title="">
+						<suite:toolbar>
+							<OverflowToolbar class="chartTitleToolbar">
+								<Image src="images/new/rbsv1.png" width="2rem" />
+								<Title text="Risks by Status" class="chartTitle" />
+								<ToolbarSpacer />
+
+								<suite:ChartContainerToolbarPlaceholder>
+								</suite:ChartContainerToolbarPlaceholder>
+							</OverflowToolbar>
+						</suite:toolbar>
+						<suite:content>
+							<suite:ChartContainerContent icon="sap-icon://line-chart">
+								<suite:content>
+									<viz:Popover id="idPopOverRBS"></viz:Popover>
+									<viz:VizFrame id="idVizFrameRBS" height="17rem"
+										width="100%" selectData="dataSelect" uiConfig="{applicationSet:'fiori'}">
+										<viz:customData>
+											<core:CustomData key="kpikey" value="RBS" />
+										</viz:customData>
+									</viz:VizFrame>
+								</suite:content>
+							</suite:ChartContainerContent>
+						</suite:content>
+					</suite:ChartContainer>
+				</l:content>
+			</l:Grid>
+		</content>
+	</Page>
+</mvc:View>

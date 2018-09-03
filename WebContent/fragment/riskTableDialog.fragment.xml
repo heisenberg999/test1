@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:table="sap.ui.table" xmlns:l="sap.ui.layout" xmlns:model="sap.ui.model"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:custom="sap.ui.demo.nav.custom">
+
+	<Dialog icon="" title="Info" showHeader="false" type="Standard"
+		class="spotDialogClass sapUiSizeCompact" state="None" stretchOnPhone="false"
+		stretch="false" contentWidth="100%" contentHeight="100%"
+		horizontalScrolling="true" verticalScrolling="true" resizable="false"
+		draggable="false" leftButton="" rightButton="" initialFocus=""
+		ariaDescribedBy="" validateFieldGroup="" beforeOpen="" afterOpen=""
+		beforeClose="" afterClose="">
+
+		<content>
+			<Panel>
+				<table:Table rows="{tableModel>/}" visibleRowCount="17" title="Risk Details"
+					id="idRiskTable" width="100%" columnHeaderHeight="30%" showNoData="false"
+					selectionMode="None" SelectionBehavior="Row"
+					enableColumnReordering="false" editable="false" headerDesign="Solid"
+					class="sapUiTinyMarginTop uiTableClass">
+					<table:columns>
+						<table:Column resizable="false" width="9rem">
+							<Label text="RISK ID" />
+							<table:template>
+								<Text text="{tableModel>ZriskRefNo}" wrapping="false" />
+							</table:template>
+						</table:Column>
+						<table:Column resizable="false" width="9rem">
+							<Label text="RISK DOMAIN" />
+							<table:template>
+								<Text text="{tableModel>RiskDomain}" />
+							</table:template>
+						</table:Column>
+						<table:Column resizable="false" width="30rem">
+							<Label text="RISK TITLE" />
+							<table:template>
+								<Text maxLines="1" tooltip="{tableModel>RiskTitle}"
+									text="{ path : 'tableModel>RiskTitle', formatter : '.formatter.riskformat'}" />
+							</table:template>
+						</table:Column>
+						<table:Column resizable="false" width="100rem">
+							<Label text="RISK DESCRIPTION" />
+							<table:template>
+								<Text maxLines="1" tooltip="{tableModel>RiskDescr}"
+									text="{ path : 'tableModel>RiskDescr', formatter : '.formatter.riskformat'}" />
+							</table:template>
+						</table:Column>
+						<table:Column resizable="false" width="100rem">
+							<Label text="REMEDIATION PLAN" />
+							<table:template>
+								<Text maxLines="1" tooltip="{tableModel>ControlDscrRiskRes}"
+									text="{ path : 'tableModel>ControlDscrRiskRes', formatter : '.formatter.riskformat'}" />
+							</table:template>
+						</table:Column>
+						<table:Column resizable="false" width="15rem">
+							<Label text="INHERENT RISK RATING" />
+							<table:template>
+								<Text text="{tableModel>InherentRiskRating}" />
+							</table:template>
+						</table:Column>
+						<table:Column resizable="false" width="15rem">
+							<Label text="RISK OWNER" />
+							<table:template>
+								<Text maxLines="1" text="{tableModel>RiskOwnerEmailId}" />
+							</table:template>
+						</table:Column>
+						<table:Column resizable="false" width="10rem">
+							<Label text="CLOSURE DATE" />
+							<table:template>
+								<Text
+									text="{path : 'tableModel>TargetRiskClosureDate', formatter : '.formatter.dateformat'}" />
+							</table:template>
+						</table:Column>
+
+					</table:columns>
+				</table:Table>
+			</Panel>
+		</content>
+
+		<buttons>
+			<Button text="Close" press="onTableDialogClose" />
+		</buttons>
+	</Dialog>
+
+</core:FragmentDefinition>
